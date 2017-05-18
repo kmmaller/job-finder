@@ -4,6 +4,7 @@ import settings
 from jobdb import Base,Job
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from slackclient import SlackClient
 
 engine = create_engine('sqlite:///jobs.db')
 Base.metadata.bind = engine
@@ -13,17 +14,20 @@ DBSession.bind = engine
 session = DBSession()
 
 jobs = session.query(Job).filter(Job.score>settings.score_filter).all()
-
-def first_job():
-    job = session.query(Job).first()
-    return job
-
 def count_rows():
-    rows = session.query(Job).count()
-    return rows
+    rows = len(jobs)
+    return str(rows)
+def post_to_slack(sc, job):
+    desc = "{0} | score: {1} | {2} ".format(job.jobtitle, job.score, job.link)
+    sc.api_call(
+        "chat.postMessage", channel=settings.SLACK_CHANNEL, text=desc,
+        username='jobbot', icon_emoji=':robot_face:'
+    )
+
 
 if __name__ == "__main__":
-    print("total: ", count_rows())
-    #print(first_job().jobtitle,': ',first_job().score)
+    sc = SlackClient(settings.SLACK_TOKEN)
+    sc.api_call("chat.postMessage", channel=settings.SLACK_CHANNEL, text=count_rows()+" new jobs matching your criteria",
+        username='jobbot', icon_emoji=':robot_face:')
     for job in jobs:
-        print(job.id, " " ,job.jobtitle,": ",job.score)
+        post_to_slack(sc,job)

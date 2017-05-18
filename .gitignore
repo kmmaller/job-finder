@@ -103,3 +103,5 @@ ENV/
 .DS_Store
 jobs.db
 private.py
+.project
+.pydevproject

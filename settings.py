@@ -1,4 +1,4 @@
-
+import os
 
 base_url = 'https://de.indeed.com/' 
 jobs_url = base_url + 'Jobs'
@@ -21,3 +21,14 @@ key_phrases = ['machine learning','nurnberg','erlangen','physik','phd',
                'physics', 'data mining', 'text mining', 'neural networks','sklearn','keras',
                'theano','tensorflow','matlab','statistics'
                ]
+
+SLACK_CHANNEL = "#jobs"
+
+# The token that allows us to connect to slack.
+SLACK_TOKEN = os.getenv('SLACK_TOKEN', "")
+
+# Any private settings are imported here.
+try:
+    from private import *
+except Exception:
+    pass

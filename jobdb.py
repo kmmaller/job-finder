@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker
-import time
+import settings
 
 engine = create_engine('sqlite:///jobs.db', echo=False)
 Base = declarative_base()
@@ -31,7 +31,7 @@ def store_jobs(links):
         if job is None:
             #create job object
             job = Job(
-                link = item,
+                link = settings.base_url+item,
                 jobtitle = key,
                 score = jobrec.results()['score'],
                 )
