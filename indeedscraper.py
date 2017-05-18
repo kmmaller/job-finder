@@ -76,11 +76,9 @@ def make_job_dict(links):
     jobs = dict()
     for key, item in links.items():
         job = JobRec(key,item)
-        jobs[key] = job.results()
+        jobs[key] = job.results()['score']
         #print(job.results())    
     return jobs
 
 if __name__ == "__main__":
-    links = get_indeed_pages()
-    jobs = sort_job_recs(links)
-    print(jobs)
+   pass
