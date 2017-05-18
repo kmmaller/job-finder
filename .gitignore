@@ -101,5 +101,5 @@ ENV/
 .mypy_cache/
 
 .DS_Store
-.ipynb
-.db
+jobs.db
+private.py

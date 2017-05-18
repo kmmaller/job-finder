@@ -1,5 +1,6 @@
 ''' Some simple queries on the created table '''
 
+import settings
 from jobdb import Base,Job
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -11,7 +12,7 @@ DBSession = sessionmaker()
 DBSession.bind = engine
 session = DBSession()
 
-jobs = session.query(Job).filter(Job.score>3).all()
+jobs = session.query(Job).filter(Job.score>settings.score_filter).all()
 
 def first_job():
     job = session.query(Job).first()
