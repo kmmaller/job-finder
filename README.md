@@ -36,3 +36,10 @@ Run
 
 * After updating the configurations in `settings.py` run `python jobdb.py`.  This will do all the scraping and store the results in a `.db` file.
 * Run `python queryjobs.py` to query the resulting table and post the results to your Slack channel!
+
+Further Work
+--------------------
+* Fix SSL certification verification issue.
+* Add capability to scrape other job search websites, aggregating the results to the Slack channel.
+* Add a time filter to post to the channel only jobs added to the database in the last 24 hours (for example).
+* Make scoring mechanism for sophisticated.  For example, instead of a list of key words, input an entire resume/CV and find the similarties between the resume and the job rec.
