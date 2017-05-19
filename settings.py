@@ -21,6 +21,8 @@ key_phrases = ['machine learning','nurnberg','erlangen','physik','phd',
                'physics', 'data mining', 'text mining', 'neural networks','sklearn','keras',
                'theano','tensorflow','matlab','statistics'
                ]
+#resolving issues with the SSL certificates.  Setting this so false ignores the issue but could be a security risk
+VERIFY_SSL = False
 
 SLACK_CHANNEL = "#jobs"
 
