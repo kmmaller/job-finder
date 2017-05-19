@@ -1,0 +1,4 @@
+sqlalchemy
+slackclient
+requests
+beautifulsoup4
