@@ -1,6 +1,6 @@
 '''This modules creates the database that is updated with the job rec data'''
 
-from indeedscraper import JobRec
+from indeedscraper import JobReq
 from indeedscraper import get_indeed_pages
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -26,9 +26,9 @@ Session = sessionmaker(bind=engine)
 session = Session()
 
 def store_jobs(links):
-    #loop through dictionary and create JobRec instance for each entry
+    #loop through dictionary and create JobReq instance for each entry
     for key, item in links.items():
-        jobrec = JobRec(key,item)
+        jobreq = JobReq(key,item)
         #look for current job in database
         job = session.query(Job).filter_by(jobtitle=key).first()
         #only add job if its not already in the database
@@ -37,7 +37,7 @@ def store_jobs(links):
             job = Job(
                 link = settings.base_url+item,
                 jobtitle = key,
-                score = jobrec.count_key_words()
+                score = jobreq.count_key_words()
                 )
             session.add(job)
             session.commit()            

@@ -9,13 +9,13 @@ score_filter = 3 #only show jobs that score above this number. Set to 0 to see a
     q: query (key word)
     l: location
     radius: distance to search from location in km
-    sort: 'date' or or relavance (leave blank)'''
-filters = {'q': 'Data Science',
+    sort: 'date' or or relevance (leave blank)'''
+filters = {'q': 'Data',
            'l': 'Nurnberg',
            'radius': '25',
            'sort' : 'date' } #'start' : 0? for page number
 
-# key words to match job recs to. Use "buzzwords" you would use in your resume. use lowercase
+# key words to match job reqs to. Use "buzzwords" you would use in your resume. use lowercase
 key_phrases = ['machine learning','nurnberg','erlangen','physik','phd',
                'neural networks','python','englischen','deep learning','scikit-learn','english',
                'physics', 'data mining', 'text mining', 'neural networks','sklearn','keras',

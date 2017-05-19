@@ -18,7 +18,7 @@ class IndeedPage(object):
         soup_data = soup.find_all('a',{'class': "turnstileLink","data-tn-element":"jobTitle"})
         return soup_data
         
-class JobRec(object):
+class JobReq(object):
     def __init__(self,title,link):        
         self.Title = title
         self.Link = link
