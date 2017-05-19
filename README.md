@@ -1,6 +1,6 @@
 # job-finder
 
-This bot scrapes the search results of indeed.com (or indeed.de in my case) then scrapes the resulting job recs and scores each one based on key word matching. The resulting job titles, key word matching score, and links are posted on a Slack channel.
+This bot scrapes the search results of indeed.com (or indeed.de in my case) then scrapes the resulting job reqs and scores each one based on key word matching. The resulting job titles, key word matching score, and links are posted on a Slack channel.
 
 I am currently searching for a job in Germany and this helps me sort through results to find the best jobs to apply for, without doing any German to English translation!
 
