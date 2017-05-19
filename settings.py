@@ -3,7 +3,7 @@ import os
 base_url = 'https://de.indeed.com/' 
 jobs_url = base_url + 'Jobs'
 number_of_pages = 10 #there are 10 entries per page
-score_filter = 3 #only show jobs that score above this number. Set to 0 to see all jobs.
+score_filter = 0 #only show jobs that score above this number. Set to 0 to see all jobs.
 
 '''search parameters:
     q: query (key word)
@@ -21,8 +21,9 @@ key_phrases = ['machine learning','nurnberg','erlangen','physik','phd',
                'physics', 'data mining', 'text mining', 'neural networks','sklearn','keras',
                'theano','tensorflow','matlab','statistics'
                ]
-#resolving issues with the SSL certificates.  Setting this so false ignores the issue but could be a security risk
-VERIFY_SSL = False
+#resolving issues with the SSL certificates.  Setting this to false ignores the issue but could be a security risk
+#setting this to True needs more testing. right now i dont get any results
+VERIFY_SSL = True
 
 SLACK_CHANNEL = "#jobs"
 

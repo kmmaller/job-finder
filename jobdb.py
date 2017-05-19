@@ -7,6 +7,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Float, Boolean
 from sqlalchemy.orm import sessionmaker
 import settings
+from pip._vendor.requests.exceptions import RequestException
 
 engine = create_engine('sqlite:///jobs.db', echo=False)
 Base = declarative_base()
@@ -28,19 +29,21 @@ session = Session()
 def store_jobs(links):
     #loop through dictionary and create JobReq instance for each entry
     for key, item in links.items():
-        jobreq = JobReq(key,item)
-        #look for current job in database
-        job = session.query(Job).filter_by(jobtitle=key).first()
-        #only add job if its not already in the database
-        if job is None:
-            #create Job db object
-            job = Job(
-                link = settings.base_url+item,
-                jobtitle = key,
-                score = jobreq.count_key_words()
-                )
-            session.add(job)
-            session.commit()            
+        if(settings.VERIFY_SSL and RequestException): continue
+        else:
+            jobreq = JobReq(key,item)
+            #look for current job in database
+            job = session.query(Job).filter_by(jobtitle=key).first()
+            #only add job if its not already in the database
+            if job is None:
+                #create Job db object
+                job = Job(
+                    link = settings.base_url+item,
+                    jobtitle = key,
+                    score = jobreq.count_key_words()
+                    )
+                session.add(job)
+                session.commit()            
 
 if __name__ == "__main__":
     links = get_indeed_pages()
